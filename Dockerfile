@@ -2,7 +2,7 @@ FROM ubuntu:latest
 LABEL maintainer "fadlyardhians <fadlyardhians@outlook.com>"
 
 # Indonesian timezone (GMT+7)	
-ENV TZ=Etc/GMT-7
+ENV TZ=Asia/Jayapura
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Tidy-up
