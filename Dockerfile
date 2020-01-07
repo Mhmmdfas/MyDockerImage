@@ -1,11 +1,13 @@
+# Copyright (C) 2019 Ahmad Thoriq Najahi <najahiii@outlook.co.id>
+# Template by @najahiii <najahiii@outlook.co.id>
 FROM ubuntu:focal
-LABEL maintainer "Muhammad Fadlyas <fadlyardhians@gmail.com>"
+LABEL maintainer "Muhammad Fadlyas <fadlyardhians@outlook.co.id>"
 
-# Credit to @najahiiii fot template <najahiii@outlook.co.id>
+# Indonesian timezone (GMT+7)	
+ENV TZ=Asia/Jakarta
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN git config --global user.email "fadlyardhians@gmail.com"
-RUN git config --global user.name "Muhammad Fadlyas"
-
+# Tidy-up
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
@@ -67,6 +69,9 @@ RUN apt-get update -qq && \
 	zlib1g-dev \
 	zstd
 
-ENV TZ=Asia/Jakarta
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# Git
+RUN git config --global user.email "fadlyardhians@gmail.com"
+RUN git config --global user.name "mhmmdfas"
+
+# Clang
 RUN git clone https://github.com/NusantaraDevs/clang.git -b dev/10.0 --depth=1 clang
