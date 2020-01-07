@@ -1,11 +1,11 @@
-FROM ubuntu:latest
-LABEL maintainer "fadlyardhians <fadlyardhians@outlook.com>"
+FROM ubuntu:focal
+LABEL maintainer "Muhammad Fadlyas <fadlyardhians@gmail.com>"
 
-# Indonesian timezone (GMT+7)	
-ENV TZ=Asia/Jakarta
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# Credit to @najahiiii fot template <najahiii@outlook.co.id>
 
-# Tidy-up
+RUN git config --global user.email "fadlyardhians@gmail.com"
+RUN git config --global user.name "Muhammad Fadlyas"
+
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \
@@ -20,6 +20,7 @@ RUN apt-get update -qq && \
 	bison \
 	bzip2 \
 	ca-certificates \
+	coreutils \
 	cmake \
 	curl \
 	expect \
@@ -31,6 +32,7 @@ RUN apt-get update -qq && \
 	gnupg \
 	gperf \
 	help2man \
+	lftp \
 	libc6-dev \
 	libelf-dev \
 	libgomp1-* \
@@ -42,9 +44,13 @@ RUN apt-get update -qq && \
 	libtool-bin \
 	m4 \
 	make \
+	nano \
+	openjdk-8-jdk \
+	openssh-client \
 	openssl \
 	ovmf \
 	patch \
+	pigz \
 	python3 \
 	python \
 	rsync \
@@ -60,3 +66,7 @@ RUN apt-get update -qq && \
 	zip \
 	zlib1g-dev \
 	zstd
+
+ENV TZ=Asia/Jakarta
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN git clone https://github.com/NusantaraDevs/clang.git -b dev/10.0 --depth=1 clang
