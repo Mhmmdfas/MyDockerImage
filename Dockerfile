@@ -22,7 +22,6 @@ RUN apt-get update -qq && \
         make \
         ninja-build \
         patchelf \
-        python3 \
         texinfo \
         u-boot-tools \
         zlib1g-dev
