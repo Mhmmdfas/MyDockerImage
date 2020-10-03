@@ -6345,7 +6345,7 @@ boosted_task_util(struct task_struct *p)
 	else
 		margin = min((long)0, schedtune_task_margin(p));
 
-//	trace_sched_boost_task(task, util, margin);
+//	trace_sched_boost_task(p, util, margin);
 
 	return util + margin;
 }
